@@ -90,9 +90,8 @@ ____________
 class HangmanGame:
 
     def Get_Guess(self):
-        #print(self.secretWord)
         guess = input("please input a letter between A-Z:  ")
-        if not guess.isalpha() and len(guess)>1:
+        if not guess.isalpha() and len(guess)>1 and guess =="":
             if guess.lower() == "give up":
                 self.Game_Lost()
             else:
@@ -131,16 +130,14 @@ class HangmanGame:
         print("".join(self.Blank_Word))
         self.Game_Running(tries, Failure)
 
-
     def Set_Game(self):
-        self.secretWord = words_list[randint(0,99)]
+        self.secretWord = words_list[randint(0,20)]
         self.secretWord = self.secretWord[:-1]
         for letter in self.secretWord:
             self.Blank_Word.append("_")
         self.length=len(self.secretWord)
         print("Welcome to hangman you have 6 tries\n type give up to end it early.")
         self.Game_Running(6,0)
-
 
     def Game_Lost(self):
         print(HangMan[-1])
@@ -171,7 +168,7 @@ class HangmanGame:
             print("Unable to tell what you want to do, so I will assume you want to quit. Good Bye!")
             exit()
 
-    def __init__(self):
+    def __init__(self,v):
         self.Play_Again = True
         self.secretWord = ""
         self.User_Guess = ""
@@ -182,7 +179,7 @@ class HangmanGame:
 
 def main():
     newGame = HangmanGame()
-    newGame.Set_Game()
+    newGame.Set_Game(10)
 
 if __name__ == "__main__":
     main()
